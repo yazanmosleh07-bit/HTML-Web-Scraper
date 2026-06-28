@@ -2,8 +2,10 @@
 import requests 
 from bs4 import BeautifulSoup
 
+PageInput = input("Enter The URL Of The Page: ")
+
 # getting the html page from the url using a get request
-pageResponse = requests.get("https://books.toscrape.com/")
+pageResponse = requests.get(PageInput)
 
 # setting the encoding of the page to utf-8 so icons like the pound sign won't show as random numbers
 pageResponse.encoding = "utf-8"
@@ -66,7 +68,8 @@ def getPriceNames(books,catagory):
         file.write("================================\n")
         #looping thru every itme in the book list and adding a line with a price and a name
         for item in booklist:
-            file.write(f"Name: {item["name"]}\n Price:{item["price"]}\n Rating:{item["rating"]}\n Availability:{item["availability"]}\n")
+            file.write(f"Name:{item["name"]}\n Price:{item["price"]}\n Rating:{item["rating"]}\n Availability:{item["availability"]}\n")
+    print("DONE")
         
 # calling the function and passing bookpage(that holds the list of the page) 
 getPriceNames(bookpage,pageCatagory)
